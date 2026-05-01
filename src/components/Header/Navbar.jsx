@@ -83,7 +83,7 @@ const Navbar = () => {
         {/* Main Header Area */}
         <div className="w-full ">
           <div
-            className={`${containerClass} flex items-center justify-between gap-4 py-3`}
+            className={`${containerClass} flex items-center justify-between gap-4 py-1`}
           >
             {/* Logo */}
             <a href="/" className="flex items-center gap-3  ml-3">
@@ -170,22 +170,24 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Sub Navigation (Desktop) */}
-        <div className="hidden border-t border-emerald-50 bg-gray-50 lg:block">
-          <div
-            className={`${containerClass} flex items-center justify-center gap-4 py-2`}
-          >
-            {publicLinks.map((link, index) => (
-              <a
-                key={index}
-                href={link.href}
-                className="px-3 py-1 text-sm font-semibold text-gray-600 hover:text-emerald-700 transition"
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-        </div>
+    {/* Sub Navigation (Desktop) */}
+<div className="hidden lg:block bg-white/80 backdrop-blur-md border-t border-emerald-100 shadow-sm">
+  <div className={`${containerClass} flex items-center justify-center gap-6 py-3`}>
+
+    {publicLinks.map((link, index) => (
+      <a
+        key={index}
+        href={link.href}
+        className="relative px-4 py-1.5 text-sm font-medium text-gray-700 rounded-full transition-all duration-300 
+        hover:text-white hover:bg-gradient-to-r hover:from-green-600 hover:to-emerald-400 
+        hover:shadow-md"
+      >
+        {link.label}
+      </a>
+    ))}
+
+  </div>
+</div>
 
         {/* Mobile Menu */}
         {isMenuOpen && (
