@@ -18,16 +18,17 @@ import {
   FaUserCircle,
   FaShoppingCart,
 } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 
 const publicLinks = [
-  { label: "Home", href: "/" },
-  { label: "Catalog", href: "/books" },
-  { label: "Categories", href: "/categories" },
-  { label: "Donate Books", href: "/donate" },
-  { label: "Donor Leaderboard", href: "/donors" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
-  { label: "FAQ", href: "/faq" },
+  { label: "Home", to: "/" },
+  { label: "Books", to: "/books" },
+  { label: "BookDetails", to: "/bookDetails" },
+  { label: "Categories", to: "/categories" },
+  { label: "Donor Leaderboard", to: "/donors" },
+  { label: "About", to: "/about" },
+  { label: "Contact", to: "/contact" },
+  { label: "FAQ", to: "/faq" },
 ];
 
 const accountLinks = [
@@ -134,7 +135,7 @@ const Navbar = () => {
               </a>
 
               <div className="group relative">
-                <button className="flex btn h-10  items-center gap-2 rounded-md text-sm font-semibold text-gray-600 hover:text-emerald-700 transition ">
+                <button className="flex  h-10  items-center gap-2 rounded-md text-sm font-semibold text-gray-600 hover:text-emerald-700 transition ">
                   Account <FaChevronDown className="h-3 w-4 transition " />
                 </button>
                 <ul className="invisible absolute right-0 top-full z-50 mt-2 w-56 rounded-md border bg-white py-2 opacity-0 shadow-xl transition-all group-hover:visible group-hover:opacity-100">
@@ -170,24 +171,29 @@ const Navbar = () => {
           </div>
         </div>
 
-    {/* Sub Navigation (Desktop) */}
-<div className="hidden lg:block bg-white/80 backdrop-blur-md border-t border-emerald-100 shadow-sm">
-  <div className={`${containerClass} flex items-center justify-center gap-6 py-3`}>
-
-    {publicLinks.map((link, index) => (
-      <a
-        key={index}
-        href={link.href}
-        className="relative px-4 py-1.5 text-sm font-medium text-gray-700 rounded-full transition-all duration-300 
-        hover:text-white hover:bg-gradient-to-r hover:from-green-600 hover:to-emerald-400 
-        hover:shadow-md"
-      >
-        {link.label}
-      </a>
-    ))}
-
-  </div>
-</div>
+        {/* Sub Navigation (Desktop) */}
+        <div className="hidden lg:block bg-[#f4faf4] backdrop-blur-md border-t border-emerald-100 shadow-sm">
+          <div
+            className={`${containerClass} flex items-center justify-center gap-6 py-3`}
+          >
+            {publicLinks.map((link, index) => (
+              <NavLink
+                key={index}
+                to={link.to}
+                className={({ isActive }) =>
+                  `relative px-4 py-1.5 text-sm font-medium rounded-full transition-all duration-300 
+          ${
+            isActive
+              ? "text-white bg-gradient-to-r from-green-600 to-emerald-400 shadow-md"
+              : "text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-green-600 hover:to-emerald-400 hover:shadow-md"
+          }`
+                }
+              >
+                {link.label}
+              </NavLink>
+            ))}
+          </div>
+        </div>
 
         {/* Mobile Menu */}
         {isMenuOpen && (
