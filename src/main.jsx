@@ -17,7 +17,12 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      { index: true, element: <HomePage /> },
+      {
+        index: true,
+        loader: () =>
+          fetch("https://bhairabdeenipathagar.onrender.com/api/books"),
+        element: <HomePage />,
+      },
       { path: "books", element: <Books /> },
       { path: "bookDetails", element: <BookDetails /> },
       { path: "categories", element: <Categories /> },
