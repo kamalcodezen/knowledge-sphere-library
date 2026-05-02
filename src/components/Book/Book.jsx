@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 const Book = ({ book }) => {
   return (
     <div className="group relative rounded-2xl bg-white/80 backdrop-blur border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden hover:-translate-y-1">
-      
       {/* Wishlist */}
       <button className="absolute top-3 right-3 z-10 h-9 w-9 flex items-center justify-center rounded-full bg-white shadow hover:bg-red-50 text-gray-600 hover:text-red-500 transition">
         <FaHeart size={14} />
@@ -73,9 +72,7 @@ const Book = ({ book }) => {
       </div>
 
       {/* Hover Action Bar */}
-      <div className="absolute bottom-0 left-0 w-full bg-white/95 backdrop-blur p-2 flex justify-center gap-2 opacity-0 group-hover:opacity-100 transition duration-300">
-  
-      </div>
+      <div className="absolute bottom-0 left-0 w-full bg-white/95 backdrop-blur p-2 flex justify-center gap-2 opacity-0 group-hover:opacity-100 transition duration-300"></div>
 
       {/* Bottom Glow */}
       <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-green-600 to-emerald-400 scale-x-0 group-hover:scale-x-100 transition origin-left duration-500"></div>

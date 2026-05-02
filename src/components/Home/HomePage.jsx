@@ -3,6 +3,7 @@ import Banner from "../Banner/Banner";
 import Book from "../Book/Book";
 import { Link } from "react-router-dom";
 
+
 const HomePage = () => {
   const booksPromise = useLoaderData();
   const booksData = booksPromise.content;
@@ -34,7 +35,7 @@ const HomePage = () => {
         {/* Grid */}
         <div className="grid grid-cols-3 gap-20">
           {booksData.map((book) => (
-            <Book key={book.id} book={book} />
+            <Book key={book.id} book={book} /> 
           ))}
         </div>
       </div>

@@ -11,6 +11,7 @@ import Donors from "./components/Donors/Donors";
 import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
 import Faq from "./components/Faq/Faq";
+import EmptyState from "./components/EmptyState/EmptyState";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,12 @@ const router = createBrowserRouter([
           fetch("https://bhairabdeenipathagar.onrender.com/api/books"),
         element: <HomePage />,
       },
-      { path: "books", element: <Books /> },
+      {
+        path: "books",
+        loader: () =>
+          fetch("https://bhairabdeenipathagar.onrender.com/api/books"),
+        element: <Books />,
+      },
       { path: "bookDetails", element: <BookDetails /> },
       { path: "categories", element: <Categories /> },
       { path: "donors", element: <Donors /> },
@@ -31,6 +37,10 @@ const router = createBrowserRouter([
       { path: "contact", element: <Contact /> },
       { path: "faq", element: <Faq /> },
     ],
+  },
+  {
+    path: "*",
+    Component: <EmptyState />,
   },
 ]);
 
