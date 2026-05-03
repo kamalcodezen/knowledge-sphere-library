@@ -26,7 +26,7 @@ const Books = () => {
         <div className="w-20 h-1 bg-gradient-to-r from-green-600 to-emerald-400 mb-6 rounded"></div>
 
         {/* Grid */}
-        <div className="grid grid-cols-3 gap-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-20">
           {booksData.map((book) => (
             <Book key={book.id} book={book} />
           ))}
