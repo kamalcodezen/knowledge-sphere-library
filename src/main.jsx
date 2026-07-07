@@ -12,6 +12,8 @@ import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
 import Faq from "./components/Faq/Faq";
 import EmptyState from "./components/EmptyState/EmptyState";
+import { booksLoader } from "./utils/booksLoader.js";
+import UnderConstruction from "./components/Shared/UnderConstruction";
 
 const router = createBrowserRouter([
   {
@@ -20,14 +22,12 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        loader: () =>
-          fetch("https://bhairabdeenipathagar.onrender.com/api/books"),
+        loader: booksLoader,
         element: <HomePage />,
       },
       {
         path: "books",
-        loader: () =>
-          fetch("https://bhairabdeenipathagar.onrender.com/api/books"),
+        loader: booksLoader,
         element: <Books />,
       },
       { path: "bookDetails", element: <BookDetails /> },
@@ -37,6 +37,12 @@ const router = createBrowserRouter([
       { path: "about", element: <About /> },
       { path: "contact", element: <Contact /> },
       { path: "faq", element: <Faq /> },
+      { path: "login", element: <UnderConstruction title="Login / Register" /> },
+      { path: "dashboard", element: <UnderConstruction title="User Dashboard" /> },
+      { path: "borrowed", element: <UnderConstruction title="Borrowed Books" /> },
+      { path: "wishlist", element: <UnderConstruction title="Wishlist" /> },
+      { path: "notifications", element: <UnderConstruction title="Notifications" /> },
+      { path: "admin", element: <UnderConstruction title="Admin Panel" /> },
     ],
   },
   {

@@ -1,12 +1,42 @@
+import { useState, useEffect } from "react";
 import { FaHeart, FaBookOpen, FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Book = ({ book }) => {
+  const [inWishlist, setInWishlist] = useState(false);
+
+  useEffect(() => {
+    const checkWishlist = () => {
+      const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
+      setInWishlist(wishlist.includes(book.id));
+    };
+
+    checkWishlist();
+    window.addEventListener("wishlist-updated", checkWishlist);
+    return () => window.removeEventListener("wishlist-updated", checkWishlist);
+  }, [book.id]);
+
+  const handleWishlistToggle = () => {
+    let wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
+    if (wishlist.includes(book.id)) {
+      wishlist = wishlist.filter((id) => id !== book.id);
+    } else {
+      wishlist.push(book.id);
+    }
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    window.dispatchEvent(new Event("wishlist-updated"));
+  };
+
   return (
     <div className="group relative rounded-2xl bg-white/80 backdrop-blur border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden hover:-translate-y-1">
       {/* Wishlist */}
-      <button className="absolute top-3 right-3 z-10 h-9 w-9 flex items-center justify-center rounded-full bg-white shadow hover:bg-red-50 text-gray-600 hover:text-red-500 transition">
-        <FaHeart size={14} />
+      <button 
+        onClick={handleWishlistToggle}
+        className={`absolute top-3 right-3 z-10 h-9 w-9 flex items-center justify-center rounded-full bg-white shadow transition cursor-pointer ${
+          inWishlist ? "text-red-500 hover:bg-red-50" : "text-gray-600 hover:text-red-500 hover:bg-red-50"
+        }`}
+      >
+        <FaHeart size={14} className={inWishlist ? "fill-current" : ""} />
       </button>
 
       {/* Image */}

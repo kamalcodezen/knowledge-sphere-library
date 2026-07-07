@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 import img1 from "../../assets/banner-1.jpg";
 import img2 from "../../assets/banner-2.jpg";
@@ -17,21 +18,19 @@ const Banner = () => {
   const touchStart = useRef(null);
   const touchEnd = useRef(null);
 
-  // 🔥 Auto Slide
+  // Auto Slide
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length);
-    }, 3000);
+    }, 4000);
 
     return () => clearInterval(interval);
   }, []);
 
-  // Next / Prev
   const next = () => setIndex((prev) => (prev + 1) % images.length);
   const prev = () =>
     setIndex((prev) => (prev - 1 + images.length) % images.length);
 
-  //  Swipe Support
   const handleTouchStart = (e) => {
     touchStart.current = e.targetTouches[0].clientX;
   };
@@ -41,8 +40,12 @@ const Banner = () => {
   };
 
   const handleTouchEnd = () => {
-    if (touchStart.current - touchEnd.current > 50) next();
-    if (touchStart.current - touchEnd.current < -50) prev();
+    if (touchStart.current === null || touchEnd.current === null) return;
+    const diff = touchStart.current - touchEnd.current;
+    if (diff > 50) next();
+    if (diff < -50) prev();
+    touchStart.current = null;
+    touchEnd.current = null;
   };
 
   return (
@@ -52,7 +55,7 @@ const Banner = () => {
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      {/*  Fade Images */}
+      {/* Fade Images */}
       {images.map((img, i) => (
         <img
           key={i}
@@ -74,25 +77,27 @@ const Banner = () => {
         </h1>
 
         <p className="mt-3 text-sm md:text-lg text-gray-200">
-            Explore thousands of books  from our <br /> digital library and start reading today.
-
+          Explore thousands of books from our <br /> digital library and start reading today.
         </p>
-        <button
-          type="button"
-          className="mt-6 inline-flex items-center gap-2 px-8 py-3 
-  bg-gradient-to-r from-green-700 via-emerald-600 to-green-500 
-  text-white font-semibold rounded-full shadow-lg 
-  hover:shadow-green-500/40 hover:scale-105 active:scale-95 
-  transition-all duration-300 cursor-pointer"
-        >
-          Browse Books →
-        </button>
+        
+        <Link to="/books">
+          <button
+            type="button"
+            className="mt-6 inline-flex items-center gap-2 px-8 py-3 
+    bg-gradient-to-r from-green-700 via-emerald-600 to-green-500 
+    text-white font-semibold rounded-full shadow-lg 
+    hover:shadow-green-500/40 hover:scale-105 active:scale-95 
+    transition-all duration-300 cursor-pointer"
+          >
+            Browse Books →
+          </button>
+        </Link>
       </div>
 
       {/* Prev */}
       <button
         onClick={prev}
-        className="absolute left-5 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white px-4 py-2 rounded-full cursor-pointer"
+        className="absolute left-5 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/80 px-4 py-2 rounded-full cursor-pointer text-white hover:text-gray-800 transition duration-300"
       >
         ❮
       </button>
@@ -100,12 +105,12 @@ const Banner = () => {
       {/* Next */}
       <button
         onClick={next}
-        className="absolute right-5 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white px-4 py-2 rounded-full cursor-pointer"
+        className="absolute right-5 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/80 px-4 py-2 rounded-full cursor-pointer text-white hover:text-gray-800 transition duration-300"
       >
         ❯
       </button>
 
-      {/*  Dots */}
+      {/* Dots */}
       <div className="absolute bottom-5 w-full flex justify-center gap-2">
         {images.map((_, i) => (
           <div
