@@ -1,16 +1,65 @@
-# React + Vite
+# Bhairab Pathagar (Knowledge Sphere Library)
+A modern, visual-first library cataloging and booking system designed with clean aesthetics and user interaction.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## 🌟 Key Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* **Interactive Book Gallery:** Users can explore a rich collection of books across categories like Islamic, Academic, History, Programming, and more.
+* **Smart Local Filtering:** Badges in the header display real-time counts for the user's Wishlist and Borrowed list. Clicking them dynamically filters the catalog grid.
+* **Persistent Cart & Wishlist:** Fully integrated with local storage persistence and dynamic window event dispatching to sync counts instantly across components.
+* **Detailed Book Overview:** View metadata, descriptions, real-time remaining copies, publisher specs, and trigger borrow/wishlist actions.
+* **Offline API Fallback:** Utilizes an offline-first books loader that falls back gracefully to local JSON mock data if the Render backend API is offline or times out.
+* **Under Construction Stubs:** Clean placeholder screens for under-development routes (like notifications, admin, login) instead of generic 404 pages.
+* **Donor Leaderboard:** View top library patrons sorted by ranks, donation tier badges (Platinum, Gold, Silver, Bronze), and contributions.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tech Stack
 
-## Expanding the ESLint configuration
+* **Core:** React 19, Vite, Tailwind CSS (v4)
+* **Components & Styling:** DaisyUI (v5), React Icons, Framer Motion
+* **Routing:** React Router (v7)
+* **Slider/Carousel:** Swiper
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🚀 Local Setup Instructions
+
+1. Go to the project directory:
+   ```bash
+   cd projects/knowledge-sphere-library
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Run the Vite development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open the application:
+   [http://localhost:5173](http://localhost:5173)
+
+---
+
+## 📂 Verification Commands
+
+* **Run ESLint Checks:**
+  ```bash
+  npm run lint
+  ```
+* **Build Production Bundle:**
+  ```bash
+  npm run build
+  ```
+
+---
+
+## 🌐 Live URL (Vercel)
+
+The application is deployed and live at:
+[https://knowledge-sphere-library.vercel.app](https://knowledge-sphere-library.vercel.app)
